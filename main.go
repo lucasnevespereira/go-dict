@@ -25,11 +25,6 @@ func main() {
 	default:
 		fmt.Printf("Unknown action: %v\n", *action)
 	}
-	d.Add("python", "An interpreted language")
-	words, entries, _ := d.List()
-	for _, word := range words {
-		fmt.Println(entries[word])
-	}
 }
 
 func actionAdd(d *dictionary.Dictionary, args []string) {
@@ -50,9 +45,10 @@ func actionDefine(d *dictionary.Dictionary, args []string) {
 
 func actionRemove(d *dictionary.Dictionary, args []string) {
 	word := args[0]
+	fmt.Println("here", word)
 	err := d.Remove(word)
 	handleErr(err)
-	fmt.Printf("word '%v' was removed", word)
+	fmt.Printf("word '%v' was removed\n", word)
 }
 
 func actionList(d *dictionary.Dictionary) {
