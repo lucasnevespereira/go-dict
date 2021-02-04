@@ -30,6 +30,13 @@ func (d *Dictionary) Add(word string, definition string) error {
 	})
 }
 
+// Remove function deletes an entry to the dictionnary
+func (d *Dictionary) Remove(word string) error {
+	return d.db.Update(func(txn *badger.Txn) error {
+		return txn.Delete([]byte(word))
+	})
+}
+
 // Get functions reads entry from dictionary
 func (d *Dictionary) Get(word string) (Entry, error) {
 	var entry Entry
