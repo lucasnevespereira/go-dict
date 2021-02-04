@@ -28,7 +28,7 @@ func (e Entry) String() string {
 func New(dir string) (*Dictionary, error) {
 	options := badger.DefaultOptions(dir)
 
-	db, err := badger.Open(options)
+	db, err := badger.Open(options.WithLogger(nil))
 	if err != nil {
 		return nil, err
 	}
